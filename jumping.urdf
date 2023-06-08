@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+
+<!--THIS IS JUST A TRIAL URDF, WILL HAVE TO MODIFY AS PER THE ACTUAL MODEL IN LAB-->
+<!--Earlier masses: 0.8, 0.1, 0.1-->
+<robot name="jumping_robot">
+
+<!--LINKS-->
+    <link name="base">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="10" />
+            <inertia ixx="0.0002835" ixy="0.0" ixz="0.0" iyy="0.0002835" iyz="0.0" izz="0.000324"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.20 0.20 0.30"/>
+            </geometry>
+        </collision>
+	    <visual>
+	      <geometry>
+	        <box size="0.20 0.20 0.30"/>
+	      </geometry>
+	      <material name="red">
+            <color rgba="1.0 0.0 0.0 0.0"/>
+	      </material>
+	    </visual>        
+    </link>
+
+    <!-- <link name="hipassembly">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.4"/>
+            <inertia ixx="0.0002835" ixy="0.0" ixz="0.0" iyy="0.0002835" iyz="0.0" izz="0.000324"/>
+        </inertial>
+        <collision>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <geometry>
+                <sphere radius="0.040"/>
+                
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <geometry>
+                <sphere radius="0.040"/>
+                
+            </geometry>
+            <material name="white"/>
+        </visual>
+    </link> -->
+
+    <link name="upperleg">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="2" />
+            <inertia ixx="0.0002835" ixy="0.0" ixz="0.0" iyy="0.0002835" iyz="0.0" izz="0.000324"/>
+        </inertial>
+        <collision>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+	      <geometry>
+	        <box size="0.3 0.1 0.1"/>
+	      </geometry>
+        </collision>
+	    <visual>
+	      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+	      <geometry>
+	        <box size="0.3 0.1 0.1"/>
+	      </geometry>
+	      <material name="red">
+            <color rgba="1.0 0.0 0.0 0.0"/>
+          </material>
+	    </visual>
+    </link>
+
+    <link name="lowerleg">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="2" />
+            <inertia ixx="0.0002835" ixy="0.0" ixz="0.0" iyy="0.0002835" iyz="0.0" izz="0.000324"/>
+        </inertial>
+        <collision>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+	      <geometry>
+	        <box size="0.4 0.1 0.1"/>
+	      </geometry>
+        </collision>
+	    <visual>
+	      <geometry>
+	        <box size="0.4 0.1 0.1"/>
+	      </geometry>
+	      <material name="white"/>
+	    </visual>        
+    </link>
+
+    <link name="lowerleg_contactsensor_link">
+ 	    <inertial >
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.1" />
+            <inertia ixx="1.28e-06" ixy="0.0" ixz="0.0" iyy="1.28e-06" iyz="0.0" izz="1.28e-06"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.020"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <sphere radius="0.10"/>
+            </geometry>
+            <material name="red">
+	            <color rgba="1.0 0 0 1.0"/>
+	        </material>
+        </visual>
+	</link>
+
+<!--JOINTS-->
+    <joint name="lowerleg_contactsensor_link_joint" type="fixed">
+        <parent link="lowerleg"/>
+        <child link="lowerleg_contactsensor_link"/>
+        <origin xyz="0.35 0 0" rpy="0 0 0"/>
+    </joint>
+    
+    
+    <!-- <joint name="haa_joint" type="revolute">
+        <origin xyz="0.0 0.0 -0.15000" rpy="2.0344439357957036 1.5707962290814481 -1.1071487177940917"/>
+        <parent link="base"/>
+        <child  link="hipassembly"/>
+        <limit effort="200" lower="-1.6" upper="1.6" velocity="10.0"/>
+        <axis xyz="0 0 1"/>
+    </joint> -->
+    
+    <joint name="hfe_joint" type="revolute">
+        <origin xyz="0.2000 0.00000 0.00000" rpy="1.5707963705062866 -0.0 0.0"/>
+        <parent link="base"/>
+        <child  link="upperleg"/>
+        <limit effort="200" lower="-1.6" upper="1.6" velocity="10.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="kfe_joint" type="revolute">
+        <origin xyz="0.35000 0.00000 0.00000" rpy="0.0 0.0 0.0"/>
+        <parent link="upperleg"/>
+        <child  link="lowerleg"/>
+        <limit effort="200" lower="-1.6" upper="1.6" velocity="10.0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    
+</robot>
