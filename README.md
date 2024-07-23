@@ -1,5 +1,5 @@
 # Hopper_robot
 
-![sim-1-pic.png]
+![[sim-1-pic.png]]
 
-![plot-pic.png]
+![[plot-pic.png]]
