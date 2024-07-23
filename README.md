@@ -1,5 +1,8 @@
 # Hopper_robot
 
-![[sim-1-pic.png]]
+## Picture of the simulation environment
+![sim-plot](https://github.com/anushtup-nandy/Hopper_robot/blob/main/sim-1-pic.png?raw=true)
 
-![[plot-pic.png]]
+
+## Centre of mass plots
+![plot-pic](https://github.com/anushtup-nandy/Hopper_robot/blob/main/plot-pic.png?raw=true)
